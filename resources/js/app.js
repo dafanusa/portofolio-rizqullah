@@ -82,13 +82,9 @@ const setupCertificates = () => {
     const normalizeAssetUrl = (src) => {
         if (!src) return src;
         try {
-            const url = new URL(src, window.location.origin);
-            if (url.origin !== window.location.origin) {
-                return encodeURI(`${window.location.origin}${url.pathname}`);
-            }
-            return encodeURI(url.toString());
+            return new URL(src, window.location.href).toString();
         } catch (error) {
-            return encodeURI(src);
+            return src;
         }
     };
 
